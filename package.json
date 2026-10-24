@@ -1,0 +1,16 @@
+{
+  "name": "gauss_js",
+  "version": "1.0.0",
+  "private": true,
+  "description": "'СЛАР' solver by Gauss elimination, with Sinon mocks for Matrix",
+  "scripts": {
+    "test": "mocha matrix_mock_test.js",
+    "start": "node main.js"
+  },
+  "devDependencies": {
+    "chai": "^4.5.0",
+    "mocha": "^10.8.2",
+    "sinon": "^16.1.3",
+    "sinon-chai": "^3.7.0"
+  }
+}
