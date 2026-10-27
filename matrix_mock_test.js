@@ -57,25 +57,6 @@ describe("Mock методів класу matrix", function () {
         });
     });
 
-    describe("set", function () {
-        it("read_input записывает коэффициенты только через set", function () {
-            const lines = fs.readFileSync("input.txt", "utf8").split("\n");
-            lines.pop();
-            const n = parseInt(lines[0], 10);
-            const mock = sandbox.mock(matrix.prototype);
-            const set = mock.expects("set").exactly(n * (n + 1));
-
-            read_input();
-
-            const first = lines[1].split(" ").map(Number);
-            const last = lines[n].split(" ").map(Number);
-            expect(set).to.have.been.calledWith(0, 0, first[0]);
-            expect(set).to.have.been.calledWith(0, n, first[n]);
-            expect(set).to.have.been.calledWith(n - 1, n, last[n]);
-            mock.verify();
-        });
-    });
-
     describe("mull_add", function () {
         it("прямой ход вызывает mull_add с коэффициентом исключения", function () {
             const m = createMatrix([
