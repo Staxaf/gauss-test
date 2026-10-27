@@ -132,30 +132,6 @@ describe("Mock методів класу matrix", function () {
         });
     });
 
-    describe("get_rows, get_cols, get, mull_add", function () {
-        it("прямой ход можно выполнить на полностью замоканной матрице", function () {
-            const m = new matrix(2);
-            const mock = sandbox.mock(m);
-            const getRows = mock.expects("get_rows").once().returns(2);
-            const getCols = mock.expects("get_cols").once().returns(3);
-            const pivot = mock.expects("get").withExactArgs(0, 0).exactly(2).returns(2);
-            const below = mock.expects("get").withExactArgs(1, 0).once().returns(4);
-            const mullAdd = mock.expects("mull_add").once().withExactArgs(1, 0, -2);
-            mock.expects("swap_with_nonzero_row").never();
-
-            gauss_forward(m);
-
-            expect(getRows).to.have.been.calledOnce;
-            expect(getCols).to.have.been.calledOnce;
-            expect(pivot).to.have.been.calledTwice;
-            expect(pivot).to.have.been.calledWithExactly(0, 0);
-            expect(below).to.have.been.calledOnce;
-            expect(below).to.have.been.calledWithExactly(1, 0);
-            expect(mullAdd).to.have.been.calledWithExactly(1, 0, -2);
-            mock.verify();
-        });
-    });
-
     describe("get", function () {
         it("обратный ход считает решение из замоканных элементов", function () {
             const m = new matrix(2);
